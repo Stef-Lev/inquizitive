@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {fetchQuizQuestions} from './API';
+import { fetchQuizQuestions } from './API';
 import './App.css';
 import QuestionCard from './components/QuestionCard'
 import { QuestionState, Difficulty } from './API'
@@ -23,7 +23,7 @@ const App: React.FC = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
-  console.log(questions)
+  console.log(questions);
 
   const startQuiz = async () => {
     setLoading(true);
@@ -64,7 +64,6 @@ const App: React.FC = () => {
     } else {
       setNumber(nextQ);
     }
-
   }
 
   return (
@@ -76,11 +75,12 @@ const App: React.FC = () => {
         </button>
       ) : null}
       
-      {!gameOver ? <p className='score'>Score:</p> : null}
+      {!gameOver ? <p className='score'>Score: {score}</p> : null}
       {loading && <p>Loading Question ...</p> }
       {!loading && !gameOver && (
       <QuestionCard
         question = {questions[number].question}
+        category = {questions[number].category}
         answers = {questions[number].answers}
         callback = {checkAnswer}
         userAnswer = { userAnswers ? userAnswers[number] : undefined }

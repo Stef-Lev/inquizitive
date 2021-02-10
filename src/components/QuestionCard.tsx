@@ -3,6 +3,7 @@ import { AnswerObject } from '../App';
 
 type Props = {
     question: string;
+    category: string;
     answers: string[];
     callback: any;
     userAnswer: any;
@@ -12,6 +13,7 @@ type Props = {
 
 const QuestionCard: React.FC<Props> = ({
     question, 
+    category,
     answers, 
     callback, 
     userAnswer, 
@@ -21,13 +23,14 @@ const QuestionCard: React.FC<Props> = ({
     return (
         <div>
             <div>
-                <p className='number'>Question: {questionNumber} / {totalQuestions}</p>
-                <p dangerouslySetInnerHTML={{ __html: question }}/> 
+                <p className = 'number'>Question: { questionNumber } / { totalQuestions }</p>
+                <p>{ category }</p>
+                <p dangerouslySetInnerHTML = {{ __html: question }}/> 
                 <div>
-                    {answers.map((answer) => (
-                        <div key={answer}>
-                            <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
-                                <span dangerouslySetInnerHTML={{ __html: answer }}/>
+                    {answers.map(( answer ) => (
+                        <div key = { answer }>
+                            <button disabled = { userAnswer ? true : false } value = { answer } onClick={ callback }>
+                                <span dangerouslySetInnerHTML = {{ __html: answer }}/>
                             </button>
                         </div>
                     ))}
