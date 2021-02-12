@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
 import { QuestionState, Difficulty } from './API';
-import { GlobalStyle } from './App.styles';
+import { GlobalStyle, Wrapper } from './App.styles';
+import SpinLoader from './components/SpinLoader';
 
 export type AnswerObject = {
   question: string;
@@ -43,9 +44,9 @@ const App: React.FC = () => {
 
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
-  
+
       if (correct) setScore((prev) => prev + 1);
-  
+
       const answerObject = {
         question: questions[number].question,
         answer,
@@ -68,33 +69,33 @@ const App: React.FC = () => {
 
   return (
     <>
-    <GlobalStyle/>
-    <div className="App">
-      <h1>QUIZ</h1>
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <button className='start' onClick={startQuiz}>
-          Start
-        </button>
-      ) : null}
-      
-      {!gameOver ? <p className='score'>Score: {score}</p> : null}
-      {loading && <p>Loading Question ...</p> }
-      {!loading && !gameOver && (
-      <QuestionCard
-        question = {questions[number].question}
-        category = {questions[number].category}
-        answers = {questions[number].answers}
-        callback = {checkAnswer}
-        userAnswer = { userAnswers ? userAnswers[number] : undefined }
-        questionNumber = {number+1}
-        totalQuestions = {TOTAL_QUESTIONS}
-      />)}
-      {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
-        <button className='next' onClick={nextQuestion}>
-        Next Question
-        </button>
-      ) : null}
-    </div>
+      <GlobalStyle />
+      <Wrapper>
+        <h1>QUIZ</h1>
+        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+          <button className='start' onClick={startQuiz}>
+            Start
+          </button>
+        ) : null}
+
+        {!gameOver ? <p className='score'>Score: {score}</p> : null}
+        {loading && <SpinLoader />}
+        {!loading && !gameOver && (
+          <QuestionCard
+            question={questions[number].question}
+            category={questions[number].category}
+            answers={questions[number].answers}
+            callback={checkAnswer}
+            userAnswer={userAnswers ? userAnswers[number] : undefined}
+            questionNumber={number + 1}
+            totalQuestions={TOTAL_QUESTIONS}
+          />)}
+        {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
+          <button className='next' onClick={nextQuestion}>
+            Next Question
+          </button>
+        ) : null}
+      </Wrapper>
     </>
   );
 }
