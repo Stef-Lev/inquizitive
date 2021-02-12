@@ -2,14 +2,22 @@ import React from 'react';
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-export const SpinLoader = () => {
+type Props = {
+    type: string | any;
+    color: string;
+    height: number;
+    width: number;
+    timeout: number;
+};
+
+export const SpinLoader: React.FC<Props> = ({ type, color, height, width, timeout }) => {
     return (
         <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
+            type={type}
+            color={color}
+            height={height}
+            width={width}
+            timeout={timeout}
         />
     )
 }

@@ -79,7 +79,13 @@ const App: React.FC = () => {
         ) : null}
 
         {!gameOver ? <p className='score'>Score: {score}</p> : null}
-        {loading && <SpinLoader />}
+        {loading && <SpinLoader
+          type='Puff'
+          color='#00BFFF'
+          height={100}
+          width={100}
+          timeout={3000}
+        />}
         {!loading && !gameOver && (
           <QuestionCard
             question={questions[number].question}
