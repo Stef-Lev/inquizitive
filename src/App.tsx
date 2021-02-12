@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { fetchQuizQuestions } from './API';
-import './App.css';
-import QuestionCard from './components/QuestionCard'
-import { QuestionState, Difficulty } from './API'
+import QuestionCard from './components/QuestionCard';
+import { QuestionState, Difficulty } from './API';
+import { GlobalStyle } from './App.styles';
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -67,6 +67,8 @@ const App: React.FC = () => {
   }
 
   return (
+    <>
+    <GlobalStyle/>
     <div className="App">
       <h1>QUIZ</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
@@ -93,6 +95,7 @@ const App: React.FC = () => {
         </button>
       ) : null}
     </div>
+    </>
   );
 }
 

@@ -5,8 +5,8 @@ type Props = {
     question: string;
     category: string;
     answers: string[];
-    callback: any;
-    userAnswer: any;
+    callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    userAnswer: AnswerObject | undefined;
     questionNumber: number;
     totalQuestions: number
 }
