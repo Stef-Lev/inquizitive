@@ -56,6 +56,7 @@ const App: React.FC = () => {
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   }
+  // Add switches to control difficulty and number of questions.
 
   const nextQuestion = () => {
     const nextQ = number + 1;
@@ -71,7 +72,7 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>QUIZ</h1>
+        <h1>The Quizzard</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <button className='start' onClick={startQuiz}>
             Start
@@ -81,10 +82,10 @@ const App: React.FC = () => {
         {!gameOver ? <p className='score'>Score: {score}</p> : null}
         {loading && <SpinLoader
           type='Puff'
-          color='#00BFFF'
-          height={100}
-          width={100}
-          timeout={3000}
+          color='#f1f2f6'
+          height={250}
+          width={250}
+          timeout={10000}
         />}
         {!loading && !gameOver && (
           <QuestionCard

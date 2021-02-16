@@ -1,6 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components';
-//@ts-ignore
-import BGImage from './images/mountains.jpg'
 
 export const GlobalStyle = createGlobalStyle`
     html {
@@ -8,8 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-image: url(${BGImage});
-        background-size: cover;
+        background: #007EA7;
         margin: 0;
         padding: 0 20px;
         justify-content: center;
@@ -33,8 +30,8 @@ export const Wrapper = styled.div`
     margin: 0;
   }
   h1 {
-    font-family: Fascinate Inline;
-    background-image: linear-gradient(180deg, #fff, #87f1ff);
+    font-family: 'Sonsie One', cursive;
+    background: #f1f2f6;
     font-weight: 400;
     background-size: 100%;
     background-clip: text;
@@ -49,8 +46,8 @@ export const Wrapper = styled.div`
   }
   .start, .next {
     cursor: pointer;
-    background: linear-gradient(180deg, #ffffff, #ffcc91);
-    border: 2px solid #d38558;
+    background: linear-gradient(180deg, #ec9f78, #e57a44);
+    border: none;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     height: 40px;
@@ -59,5 +56,11 @@ export const Wrapper = styled.div`
   }
   .start {
     max-width: 200px;
+  }
+
+  @media screen and (max-width: 600px) {
+    h1 {
+      font-size: 44px;
+    }
   }
 `;
