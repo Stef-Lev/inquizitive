@@ -28,36 +28,34 @@ const QuestionCard: React.FC<Props> = ({
             <p dangerouslySetInnerHTML={{ __html: question }} />
             <div className='answers-container'>
                 <div className='row'>
-                    {answers.map((answer, index) => {
-                        if (index < 2)
-                            return (
-                                <ButtonWrapper
-                                    key={index}
-                                    correct={userAnswer?.correctAnswer === answer}
-                                    userClicked={userAnswer?.answer === answer}
-                                >
-                                    <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
-                                        <span dangerouslySetInnerHTML={{ __html: answer }} />
-                                    </button>
-                                </ButtonWrapper>
-                            )
+                    {answers.filter((answer, index) => index < 2).map((answer, index) => {
+                        return (
+                            <ButtonWrapper
+                                key={index}
+                                correct={userAnswer?.correctAnswer === answer}
+                                userClicked={userAnswer?.answer === answer}
+                            >
+                                <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
+                                    <span dangerouslySetInnerHTML={{ __html: answer }} />
+                                </button>
+                            </ButtonWrapper>
+                        )
                     }
                     )}
                 </div>
                 <div className='row'>
-                    {answers.map((answer, index) => {
-                        if (index > 1)
-                            return (
-                                <ButtonWrapper
-                                    key={index}
-                                    correct={userAnswer?.correctAnswer === answer}
-                                    userClicked={userAnswer?.answer === answer}
-                                >
-                                    <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
-                                        <span dangerouslySetInnerHTML={{ __html: answer }} />
-                                    </button>
-                                </ButtonWrapper>
-                            )
+                    {answers.filter((answer, index) => index > 1).map((answer, index) => {
+                        return (
+                            <ButtonWrapper
+                                key={index}
+                                correct={userAnswer?.correctAnswer === answer}
+                                userClicked={userAnswer?.answer === answer}
+                            >
+                                <button disabled={userAnswer ? true : false} value={answer} onClick={callback}>
+                                    <span dangerouslySetInnerHTML={{ __html: answer }} />
+                                </button>
+                            </ButtonWrapper>
+                        )
                     }
                     )}
                 </div>

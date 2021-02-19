@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
     margin: 0;
   }
   h1 {
-    font-family: 'Sonsie One', cursive;
+    font-family: 'Ranchers', cursive;
     background: #f1f2f6;
     font-weight: 400;
     background-size: 100%;
@@ -60,7 +60,7 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 600px) {
     h1 {
-      font-size: 44px;
+      font-size: 60px;
     }
   }
 `;

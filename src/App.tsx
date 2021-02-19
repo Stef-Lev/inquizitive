@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
-import { QuestionState, Difficulty } from './API';
+import { QuestionState } from './API';
 import { GlobalStyle, Wrapper } from './App.styles';
 import SpinLoader from './components/SpinLoader';
+import DifficultyControl from './components/DifficultyControl';
+import QNumControl from './components/QNumControl';
 
 export type AnswerObject = {
   question: string;
@@ -11,9 +13,6 @@ export type AnswerObject = {
   correct: boolean;
   correctAnswer: string;
 }
-
-const TOTAL_QUESTIONS = 10;
-
 
 const App: React.FC = () => {
 
@@ -23,14 +22,18 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [questionsAmount, setQuestionsAmount] = useState<number>(10);
+  const [difficulty, setDifficulty] = useState<string>('easy');
 
-  console.log(questions);
+  if (questions.length > 0) {
+    console.log(questions);
+  }
 
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
 
-    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
+    const newQuestions = await fetchQuizQuestions(questionsAmount, difficulty);
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -58,25 +61,38 @@ const App: React.FC = () => {
   }
   // Add switches to control difficulty and number of questions.
 
+  const changeDiff = (newValue: string) => {
+    setDifficulty(newValue);
+  }
+
+  const changeAmount = (newValue: number) => {
+    setQuestionsAmount(newValue);
+  }
+
   const nextQuestion = () => {
     const nextQ = number + 1;
 
-    if (nextQ === TOTAL_QUESTIONS) {
+    if (nextQ === questionsAmount) {
       setGameOver(true);
     } else {
       setNumber(nextQ);
     }
   }
 
+
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>The Quizzard</h1>
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className='start' onClick={startQuiz}>
-            Start
+        <h1>The Quizard</h1>
+        {gameOver || userAnswers.length === questionsAmount ? (
+          <>
+            <DifficultyControl difficulty={difficulty} onChange={changeDiff} />
+            <QNumControl amount={questionsAmount} onChange={changeAmount} />
+            <button className='start' onClick={startQuiz}>
+              Start
           </button>
+          </>
         ) : null}
 
         {!gameOver ? <p className='score'>Score: {score}</p> : null}
@@ -85,7 +101,7 @@ const App: React.FC = () => {
           color='#f1f2f6'
           height={250}
           width={250}
-          timeout={10000}
+          timeout={20000}
         />}
         {!loading && !gameOver && (
           <QuestionCard
@@ -95,9 +111,9 @@ const App: React.FC = () => {
             callback={checkAnswer}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
             questionNumber={number + 1}
-            totalQuestions={TOTAL_QUESTIONS}
+            totalQuestions={questionsAmount}
           />)}
-        {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
+        {!gameOver && !loading && userAnswers.length === number + 1 && number !== questionsAmount - 1 ? (
           <button className='next' onClick={nextQuestion}>
             Next Question
           </button>
