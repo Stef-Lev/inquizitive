@@ -6,6 +6,7 @@ import { GlobalStyle, Wrapper } from './App.styles';
 import SpinLoader from './components/SpinLoader';
 import DifficultyControl from './components/DifficultyControl';
 import QNumControl from './components/QNumControl';
+import { ControlsContainer } from './components/Controls.styles';
 
 export type AnswerObject = {
   question: string;
@@ -86,13 +87,13 @@ const App: React.FC = () => {
       <Wrapper>
         <h1>The Quizard</h1>
         {gameOver || userAnswers.length === questionsAmount ? (
-          <>
+          <ControlsContainer>
             <DifficultyControl difficulty={difficulty} onChange={changeDiff} />
             <QNumControl amount={questionsAmount} onChange={changeAmount} />
             <button className='start' onClick={startQuiz}>
               Start
           </button>
-          </>
+          </ControlsContainer>
         ) : null}
 
         {!gameOver ? <p className='score'>Score: {score}</p> : null}

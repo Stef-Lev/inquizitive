@@ -1,5 +1,4 @@
 import React from 'react';
-import { CustomSelect } from './DifficultyControl.styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -17,14 +16,7 @@ const DifficultyControl = (props: Props) => {
     }
 
     return (
-        <CustomSelect>
-            {/* <label htmlFor="difficulty">Choose :</label>
-
-            <select name="difficulty" id="difficulty" onChange={handleDiff}>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select> */}
+        <>
             <FormControl>
                 <InputLabel id="demo-simple-select-label">Difficulty</InputLabel>
                 <Select
@@ -38,7 +30,7 @@ const DifficultyControl = (props: Props) => {
                     <MenuItem value="hard">Hard</MenuItem>
                 </Select>
             </FormControl>
-        </CustomSelect>
+        </>
     )
 }
 

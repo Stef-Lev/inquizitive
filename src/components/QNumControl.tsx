@@ -14,39 +14,40 @@ const marks = [
         label: '10'
     },
     {
-        value: 15,
-        label: '15'
-    },
-    {
         value: 20,
         label: '20'
     },
     {
-        value: 25,
-        label: '25'
-    },
-    {
         value: 30,
         label: '30'
+    },
+    {
+        value: 40,
+        label: '40'
+    },
+    {
+        value: 50,
+        label: '50'
     }
 ];
 
 const QNumControl = (props: Props) => {
 
-    const handleAmount = (ev: any) => {
-        props.onChange(ev.target.value);
+    const handleAmount = (ev: any, value: any) => {
+        props.onChange(value);
+        console.log(value);
     }
 
     return (
-        <div>
+        <div id='question-slider'>
             <InputLabel id="demo-simple-select-label" shrink={true}>Questions</InputLabel>
             <Slider
                 defaultValue={10}
                 step={5}
                 min={10}
-                max={30}
+                max={50}
                 marks={marks}
-                onChange={handleAmount}
+                onChangeCommitted={handleAmount}
                 valueLabelDisplay="off"
             />
         </div>
