@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background: #007EA7;
+        background: linear-gradient(0deg, rgba(71,135,164,1) 0%, rgba(0,96,140,1) 50%, rgba(15,61,82,1) 100%);
         margin: 0;
         padding: 0 20px;
         justify-content: center;
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
-    filter: drop-shadow(2px 2px #0085a3);
+    filter: drop-shadow(2px 2px #0f3d52);
     font-size: 70px;
     text-align: center;
     margin: 20px;
@@ -58,9 +58,13 @@ export const Wrapper = styled.div`
     max-width: 100%;
   }
 
+  .MuiInput-underline:after {
+    border-bottom: 2px solid #003249;
+  }
+
   @media screen and (max-width: 600px) {
     h1 {
-      font-size: 60px;
+      font-size: 50px;
     }
   }
 `;

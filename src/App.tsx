@@ -88,7 +88,7 @@ const App: React.FC = () => {
         <h1>The Quizard</h1>
         {gameOver || userAnswers.length === questionsAmount ? (
           <ControlsContainer>
-            <DifficultyControl difficulty={difficulty} onChange={changeDiff} />
+            <DifficultyControl onChange={changeDiff} />
             <QNumControl amount={questionsAmount} onChange={changeAmount} />
             <button className='start' onClick={startQuiz}>
               Start
