@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
+import ScoreCard from './components/ScoreCard';
 import { QuestionState } from './API';
 import { GlobalStyle, Wrapper } from './App.styles';
 import SpinLoader from './components/SpinLoader';
@@ -23,20 +24,21 @@ const App: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState<number>(0);
   const [gameOver, setGameOver] = useState<boolean>(true);
+  const [gameComplete, setGameComplete] = useState<boolean>(false);
   const [questionsAmount, setQuestionsAmount] = useState<number>(5);
   const [difficulty, setDifficulty] = useState<string>('easy');
 
-//  useEffect(() => {
+  useEffect(() => {
+    console.log(number, score, questionsAmount);
+  }, [number, score, questionsAmount]);
 
-//   const nextQ = number + 1;
+ useEffect(() => {
 
-//   if (number && number > 0 && nextQ === questionsAmount) {
-//     setGameOver(false);
-//   } else {
-//     setNumber(nextQ);
-//   }
+  if (userAnswers.length === questionsAmount) {
+    setGameComplete(true);
+  }
    
-//  }, [number, gameOver]);
+ }, [userAnswers, questionsAmount]);
 
   const startQuiz = async () => {
     setLoading(true);
@@ -128,6 +130,10 @@ const App: React.FC = () => {
             Next Question
           </button>
         ) : null}
+        {gameComplete && (
+          <ScoreCard score={score} questionsAmount={questionsAmount} onClick={startQuiz}/>
+        )
+        }
       </Wrapper>
     </>
   );
