@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,26 +15,17 @@ const styles = {
         fontSize: '22px',
         color: '#003249',
         fontFamily: "'Catamaran', sans-serif",
-    },
-    inputRoot: {
-        '&.MuiInput-underline:before': {
-            borderBottom: '2px solid red', // Semi-transparent underline
-        },
-        '&.MuiInput-underline:hover:before': {
-            borderBottom: '2px solid red', // Solid underline on hover
-        },
-        '&.MuiInput-underline:after': {
-            borderBottom: '2px solid red', // Solid underline on focus
-        }
     }
 }
 
 const DifficultyControl = (props: Props) => {
 
     const { onChange, classes } = props;
+    const [diffValue, setDiffValue] = useState<string>('easy');
 
     const handleDiff = (ev: any) => {
         onChange(ev.target.value);
+        setDiffValue(ev.target.value);
     }
 
     return (
@@ -44,7 +35,7 @@ const DifficultyControl = (props: Props) => {
                 <Select
                     labelId="difficulty"
                     id="difficulty"
-                    value='easy'
+                    value={diffValue}
                     onChange={handleDiff}
                 >
                     <MenuItem value="easy">Easy</MenuItem>

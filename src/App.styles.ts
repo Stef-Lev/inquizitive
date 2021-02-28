@@ -15,6 +15,9 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Catamaran', sans-serif;
     }
+    p {
+      margin: 6px 0;
+    }
 `;
 
 export const Wrapper = styled.div`
@@ -56,6 +59,10 @@ export const Wrapper = styled.div`
   }
   .start {
     max-width: 100%;
+  }
+
+  sub {
+    color: rgba(0, 0, 0, 0.75);
   }
 
   .MuiInput-underline:after {

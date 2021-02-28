@@ -5,6 +5,7 @@ import { Wrapper, ButtonWrapper } from './QuestionCard.styles';
 type Props = {
     question: string;
     category: string;
+    difficulty: string;
     answers: string[];
     callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
     userAnswer: AnswerObject | undefined;
@@ -15,6 +16,7 @@ type Props = {
 const QuestionCard: React.FC<Props> = ({
     question,
     category,
+    difficulty,
     answers,
     callback,
     userAnswer,
@@ -59,6 +61,7 @@ const QuestionCard: React.FC<Props> = ({
                     }
                     )}
                 </div>
+                <sub>Difficulty: {difficulty.toUpperCase()}</sub>
             </div>
         </Wrapper>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
 import { QuestionState } from './API';
@@ -17,18 +17,26 @@ export type AnswerObject = {
 
 const App: React.FC = () => {
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState<number>(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
-  const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(true);
-  const [questionsAmount, setQuestionsAmount] = useState<number>(10);
+  const [score, setScore] = useState<number>(0);
+  const [gameOver, setGameOver] = useState<boolean>(true);
+  const [questionsAmount, setQuestionsAmount] = useState<number>(5);
   const [difficulty, setDifficulty] = useState<string>('easy');
 
-  if (questions.length > 0) {
-    console.log(questions);
-  }
+//  useEffect(() => {
+
+//   const nextQ = number + 1;
+
+//   if (number && number > 0 && nextQ === questionsAmount) {
+//     setGameOver(false);
+//   } else {
+//     setNumber(nextQ);
+//   }
+   
+//  }, [number, gameOver]);
 
   const startQuiz = async () => {
     setLoading(true);
@@ -40,7 +48,6 @@ const App: React.FC = () => {
     setUserAnswers([]);
     setNumber(0);
     setLoading(false);
-
   }
 
   const checkAnswer = (e: any) => {
@@ -60,7 +67,6 @@ const App: React.FC = () => {
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   }
-  // Add switches to control difficulty and number of questions.
 
   const changeDiff = (newValue: string) => {
     setDifficulty(newValue);
@@ -74,8 +80,10 @@ const App: React.FC = () => {
     const nextQ = number + 1;
 
     if (nextQ === questionsAmount) {
+      console.log('over')
       setGameOver(true);
     } else {
+      console.log('next')
       setNumber(nextQ);
     }
   }
@@ -108,6 +116,7 @@ const App: React.FC = () => {
           <QuestionCard
             question={questions[number].question}
             category={questions[number].category}
+            difficulty={difficulty}
             answers={questions[number].answers}
             callback={checkAnswer}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
