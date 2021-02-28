@@ -36,6 +36,7 @@ const App: React.FC = () => {
 
   if (userAnswers.length === questionsAmount) {
     setGameComplete(true);
+    setGameOver(true);
   }
    
  }, [userAnswers, questionsAmount]);
@@ -43,6 +44,7 @@ const App: React.FC = () => {
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
+    setGameComplete(false);
 
     const newQuestions = await fetchQuizQuestions(questionsAmount, difficulty);
     setQuestions(newQuestions);
@@ -96,7 +98,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Wrapper>
         <h1>The Quizard</h1>
-        {gameOver || userAnswers.length === questionsAmount ? (
+        { gameOver || userAnswers.length === questionsAmount ? (
           <ControlsContainer>
             <DifficultyControl onChange={changeDiff} />
             <QNumControl amount={questionsAmount} onChange={changeAmount} />
@@ -114,7 +116,7 @@ const App: React.FC = () => {
           width={250}
           timeout={20000}
         />}
-        {!loading && !gameOver && (
+        {!loading && !gameOver && !gameComplete && (
           <QuestionCard
             question={questions[number].question}
             category={questions[number].category}
@@ -130,7 +132,7 @@ const App: React.FC = () => {
             Next Question
           </button>
         ) : null}
-        {gameComplete && (
+        {gameComplete && gameOver && (
           <ScoreCard score={score} questionsAmount={questionsAmount} onClick={startQuiz}/>
         )
         }
