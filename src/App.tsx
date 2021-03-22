@@ -32,14 +32,13 @@ const App: React.FC = () => {
     console.log(number, score, questionsAmount);
   }, [number, score, questionsAmount]);
 
- useEffect(() => {
-
-  if (userAnswers.length === questionsAmount) {
-    setGameComplete(true);
-    setGameOver(true);
-  }
-   
- }, [userAnswers, questionsAmount]);
+  useEffect(() => {
+    if(userAnswers.length===questionsAmount){
+      setTimeout(()=>{ 
+        setGameComplete(true); 
+      }, 1000);
+    }
+  }, [number, userAnswers, questionsAmount]);
 
   const startQuiz = async () => {
     setLoading(true);
@@ -82,7 +81,6 @@ const App: React.FC = () => {
 
   const nextQuestion = () => {
     const nextQ = number + 1;
-
     if (nextQ === questionsAmount) {
       console.log('over')
       setGameOver(true);
@@ -92,13 +90,18 @@ const App: React.FC = () => {
     }
   }
 
+  const resetQuiz = () => {
+    setGameOver(true);
+    setGameComplete(false);
+  }
+
 
   return (
     <>
       <GlobalStyle />
       <Wrapper>
         <h1>The Quizard</h1>
-        { gameOver || userAnswers.length === questionsAmount ? (
+        { gameOver ? (
           <ControlsContainer>
             <DifficultyControl onChange={changeDiff} />
             <QNumControl amount={questionsAmount} onChange={changeAmount} />
@@ -132,13 +135,15 @@ const App: React.FC = () => {
             Next Question
           </button>
         ) : null}
-        {gameComplete && gameOver && (
-          <ScoreCard score={score} questionsAmount={questionsAmount} onClick={startQuiz}/>
+        {gameComplete && (
+          <ScoreCard score={score} questionsAmount={questionsAmount} onClick={resetQuiz}/>
         )
         }
       </Wrapper>
     </>
   );
 }
+
+// @TODO ADD A SPINNER BEFORE FINAL SCORE CARD
 
 export default App;

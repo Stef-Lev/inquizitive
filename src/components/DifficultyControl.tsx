@@ -5,7 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withStyles } from "@material-ui/core/styles";
 
-type Props = {
+type DifficultyControlProps = {
     onChange: any;
     classes: any;
 }
@@ -18,7 +18,7 @@ const styles = {
     }
 }
 
-const DifficultyControl = (props: Props) => {
+const DifficultyControl = (props: DifficultyControlProps) => {
 
     const { onChange, classes } = props;
     const [diffValue, setDiffValue] = useState<string>('easy');

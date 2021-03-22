@@ -2,7 +2,7 @@ import React from 'react'
 import { AnswerObject } from '../App';
 import { Wrapper, ButtonWrapper } from './QuestionCard.styles';
 
-type Props = {
+type QuestionCardProps = {
     question: string;
     category: string;
     difficulty: string;
@@ -13,7 +13,7 @@ type Props = {
     totalQuestions: number
 }
 
-const QuestionCard: React.FC<Props> = ({
+const QuestionCard: React.FC<QuestionCardProps> = ({
     question,
     category,
     difficulty,

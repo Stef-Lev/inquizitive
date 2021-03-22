@@ -1,13 +1,13 @@
 import React from 'react'
 import { Wrapper } from './QuestionCard.styles';
 
-type Props = {
+type ScoreCardProps = {
     score: number;
     questionsAmount: number;
     onClick: () => void;
 }
 
-const ScoreCard: React.FC<Props> = ({
+const ScoreCard: React.FC<ScoreCardProps> = ({
     score,
     questionsAmount,
     onClick
