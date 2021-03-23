@@ -29,14 +29,10 @@ const App: React.FC = () => {
   const [difficulty, setDifficulty] = useState<string>('easy');
 
   useEffect(() => {
-    console.log(number, score, questionsAmount);
-  }, [number, score, questionsAmount]);
-
-  useEffect(() => {
-    if(userAnswers.length===questionsAmount){
+    if(userAnswers.length === questionsAmount){
       setTimeout(()=>{ 
         setGameComplete(true); 
-      }, 1000);
+      }, 1500);
     }
   }, [number, userAnswers, questionsAmount]);
 
@@ -82,10 +78,8 @@ const App: React.FC = () => {
   const nextQuestion = () => {
     const nextQ = number + 1;
     if (nextQ === questionsAmount) {
-      console.log('over')
       setGameOver(true);
     } else {
-      console.log('next')
       setNumber(nextQ);
     }
   }
@@ -112,13 +106,14 @@ const App: React.FC = () => {
         ) : null}
 
         {!gameOver ? <p className='score'>Score: {score}</p> : null}
-        {loading && <SpinLoader
+        {loading && <>
+        <SpinLoader
           type='Puff'
           color='#f1f2f6'
           height={250}
           width={250}
           timeout={20000}
-        />}
+        /></>}
         {!loading && !gameOver && !gameComplete && (
           <QuestionCard
             question={questions[number].question}

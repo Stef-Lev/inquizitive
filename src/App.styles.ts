@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     * {
         box-sizing: border-box;
-        font-family: 'Catamaran', sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
     p {
       margin: 6px 0;
@@ -33,7 +33,7 @@ export const Wrapper = styled.div`
     margin: 0;
   }
   h1 {
-    font-family: 'Ranchers', cursive;
+    font-family: 'Chango', cursive;
     background: #f1f2f6;
     font-weight: 400;
     background-size: 100%;
@@ -43,7 +43,7 @@ export const Wrapper = styled.div`
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
     filter: drop-shadow(2px 2px #0f3d52);
-    font-size: 70px;
+    font-size: 45px;
     text-align: center;
     margin: 20px;
   }
@@ -71,7 +71,7 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 600px) {
     h1 {
-      font-size: 50px;
+      font-size: 30px;
     }
   }
 `;

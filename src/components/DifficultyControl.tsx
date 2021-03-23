@@ -14,7 +14,7 @@ const styles = {
     labelRoot: {
         fontSize: '22px',
         color: '#003249',
-        fontFamily: "'Catamaran', sans-serif",
+        fontFamily: "'Roboto', sans-serif",
     }
 }
 
