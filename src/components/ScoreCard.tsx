@@ -1,11 +1,34 @@
-import React from 'react'
-import { Wrapper } from './QuestionCard.styles';
+import React from 'react';
+import styled from 'styled-components';
 
 type ScoreCardProps = {
     score: number;
     questionsAmount: number;
     onClick: () => void;
 }
+
+const Wrapper = styled.div`
+  
+  max-width: 1100px;
+  background: #F1F2F6;
+  border-radius: 10px;
+  border: none;
+  padding: 20px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  .answers-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  p {
+    font-size: 1rem;
+  }
+`;
 
 const ScoreCard: React.FC<ScoreCardProps> = ({
     score,

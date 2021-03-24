@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { fetchQuizQuestions } from './API';
 import QuestionCard from './components/QuestionCard';
 import ScoreCard from './components/ScoreCard';
@@ -7,7 +8,6 @@ import { GlobalStyle, Wrapper } from './App.styles';
 import SpinLoader from './components/SpinLoader';
 import DifficultyControl from './components/DifficultyControl';
 import QNumControl from './components/QNumControl';
-import { ControlsContainer } from './components/Controls.styles';
 
 export type AnswerObject = {
   question: string;
@@ -15,6 +15,18 @@ export type AnswerObject = {
   correct: boolean;
   correctAnswer: string;
 }
+
+const ControlsContainer = styled.div`
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    width: 300px;
+
+`;
 
 const App: React.FC = () => {
 
