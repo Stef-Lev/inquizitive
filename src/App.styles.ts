@@ -31,6 +31,7 @@ export const Wrapper = styled.div`
     color: #fff;
     font-size: 2rem;
     margin: 0;
+    margin-bottom: 16px;
   }
   h1 {
     font-family: 'Chango', cursive;

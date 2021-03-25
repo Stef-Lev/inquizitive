@@ -1,50 +1,63 @@
-import React, {useState} from 'react';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { withStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
+import styled from "styled-components";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { StylesProvider } from "@material-ui/core/styles";
 
 type DifficultyControlProps = {
-    onChange: any;
-    classes: any;
-}
+  onChange: any;
+};
 
-const styles = {
-    labelRoot: {
-        fontSize: '22px',
-        color: '#003249',
-        fontFamily: "'Roboto', sans-serif",
-    }
-}
+const StyledControl = styled(FormControl)`
+  && {
+    font-size: 22px;
+    color: #003249;
+    font-family: "Roboto", sans-serif;
+  }
+`;
 
-const DifficultyControl = (props: DifficultyControlProps) => {
+const StyledSelect = styled(Select)`
+  && {
+    color: #003249;
+    font-size: 16px;
+  }
+  .MuiSelect-selectMenu {
+    color: #003249;
+  }
+`;
 
-    const { onChange, classes } = props;
-    const [diffValue, setDiffValue] = useState<string>('easy');
+const StyledLabel = styled(InputLabel)`
+  && {
+    color: #003249;
+    font-size: 16px;
+  }
+`;
 
-    const handleDiff = (ev: any) => {
-        onChange(ev.target.value);
-        setDiffValue(ev.target.value);
-    }
+const DifficultyControl = (props: DifficultyControlProps): JSX.Element => {
+  const { onChange } = props;
+  const [diffValue, setDiffValue] = useState<string>("easy");
 
-    return (
-        <>
-            <FormControl classes={{ root: classes.inputRoot }}>
-                <InputLabel id="diff-label" classes={{ root: classes.labelRoot }} focused={false}>Difficulty</InputLabel>
-                <Select
-                    labelId="difficulty"
-                    id="difficulty"
-                    value={diffValue}
-                    onChange={handleDiff}
-                >
-                    <MenuItem value="easy">Easy</MenuItem>
-                    <MenuItem value="medium">Medium</MenuItem>
-                    <MenuItem value="hard">Hard</MenuItem>
-                </Select>
-            </FormControl>
-        </>
-    )
-}
+  const handleDiff = (ev: any) => {
+    onChange(ev.target.value);
+    setDiffValue(ev.target.value);
+  };
 
-export default withStyles(styles)(DifficultyControl);
+  return (
+    <>
+      <StylesProvider injectFirst>
+        <StyledControl>
+          <StyledLabel focused={false}>Difficulty</StyledLabel>
+          <StyledSelect value={diffValue} onChange={handleDiff}>
+            <MenuItem value="easy">Easy</MenuItem>
+            <MenuItem value="medium">Medium</MenuItem>
+            <MenuItem value="hard">Hard</MenuItem>
+          </StyledSelect>
+        </StyledControl>
+      </StylesProvider>
+    </>
+  );
+};
+
+export default DifficultyControl;
