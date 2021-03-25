@@ -24,7 +24,7 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
 }) => {
   const scoreFeedback = (
     <h3 style={{ margin: "8px 0" }}>
-      Your score is {`${Math.round((score / questionsAmount) * 100)}%`}
+      Your total score is {Math.round((score / questionsAmount) * 100)}%
     </h3>
   );
 

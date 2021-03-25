@@ -27,8 +27,31 @@ const ControlsContainer = styled.div`
   width: 300px;
 `;
 
+const SpinnerContainer = styled.div`
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 25px;
+`;
+
+const CalculatingContainer = styled.div`
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 25px;
+  width: 300px;
+  height: 200px;
+`;
+
 const App: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [calculating, setCalculating] = useState<boolean>(false);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState<number>(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
@@ -40,9 +63,11 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (userAnswers.length === questionsAmount) {
+      setCalculating(true);
       setTimeout(() => {
         setGameComplete(true);
-      }, 1500);
+        setCalculating(false);
+      }, 2000);
     }
   }, [number, userAnswers, questionsAmount]);
 
@@ -114,17 +139,17 @@ const App: React.FC = () => {
           </ControlsContainer>
         ) : null}
 
-        {!gameOver ? <p className="score">Score: {score}</p> : null}
         {loading && (
-          <>
+          <SpinnerContainer>
+            <p>Loading Questions...</p>
             <SpinLoader
               type="Puff"
               color="#f1f2f6"
               height={250}
               width={250}
-              timeout={20000}
+              timeout={0}
             />
-          </>
+          </SpinnerContainer>
         )}
         {!loading && !gameOver && !gameComplete && (
           <QuestionCard
@@ -153,6 +178,18 @@ const App: React.FC = () => {
             onClick={resetQuiz}
           />
         )}
+        {calculating && (
+          <CalculatingContainer>
+            <p>Calculating Score... &#x231b;</p>
+            <SpinLoader
+              type="TailSpin"
+              color="#ffffff"
+              height={50}
+              width={50}
+              timeout={0}
+            />
+          </CalculatingContainer>
+        )}
       </Wrapper>
     </>
   );
@@ -160,6 +197,7 @@ const App: React.FC = () => {
 
 // @TODO ADD A SPINNER BEFORE FINAL SCORE CARD
 // @TODO REPLACE FLEXBOX WITH GRID IN BUTTONS
+// @TODO COLORS FOR DIFFICULTY
 // @TODO CLEANUP STYLES
 
 export default App;
