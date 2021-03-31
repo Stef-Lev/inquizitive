@@ -46,7 +46,7 @@ const CalculatingContainer = styled.div`
   gap: 16px;
   font-size: 25px;
   width: 300px;
-  height: 200px;
+  height: 150px;
 `;
 
 const App: React.FC = () => {
@@ -194,10 +194,5 @@ const App: React.FC = () => {
     </>
   );
 };
-
-// @TODO ADD A SPINNER BEFORE FINAL SCORE CARD
-// @TODO REPLACE FLEXBOX WITH GRID IN BUTTONS
-// @TODO COLORS FOR DIFFICULTY
-// @TODO CLEANUP STYLES
 
 export default App;

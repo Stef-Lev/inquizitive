@@ -7,7 +7,7 @@ import Select from "@material-ui/core/Select";
 import { StylesProvider } from "@material-ui/core/styles";
 
 type DifficultyControlProps = {
-  onChange: any;
+  onChange: (arg: string) => void;
 };
 
 const StyledControl = styled(FormControl)`

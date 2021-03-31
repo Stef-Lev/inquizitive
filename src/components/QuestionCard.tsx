@@ -26,22 +26,9 @@ const Wrapper = styled.div`
   padding: 16px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   text-align: center;
-  .answers-container {
-    display: flex;
-    flex-direction: column;
-  }
-  .row {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-  }
-  p {
-    font-size: 1rem;
-  }
 `;
 
 const ButtonWrapper = styled.div<ButtonWrapperProps>`
-  width: 50%;
   transition: all 0.3s ease;
   :hover {
     opacity: 0.8;
@@ -52,8 +39,7 @@ const ButtonWrapper = styled.div<ButtonWrapperProps>`
     font-size: 0.85rem;
     width: 100%;
     min-height: 45px;
-    max-height: fit-content;
-    margin: 5px 0;
+    height: 100%;
     background: ${({ correct, userClicked }) =>
       correct ? "#26bb6c" : !correct && userClicked ? "#fa2828" : "#003249"};
     border: none;
@@ -64,10 +50,36 @@ const ButtonWrapper = styled.div<ButtonWrapperProps>`
   }
   button span {
     display: inline-block;
-    height: 100%;
+    height: fit-content;
     width: 100%;
     margin: 5px 0;
   }
+`;
+
+const BtnContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row: 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+`;
+
+const CategoryTag = styled.p`
+  display: inline-block;
+  background-color: #a4bfcf;
+  color: #fff;
+  font-size: 0.85rem !important;
+  padding: 3px 8px;
+  border-radius: 20px;
+`;
+
+const DifficultyTag = styled.p`
+  display: inline-block;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 20px;
+  padding: 2px 5px;
+  margin-top: 16px;
 `;
 
 const QuestionCard: React.FC<QuestionCardProps> = ({
@@ -80,60 +92,53 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   questionNumber,
   totalQuestions,
 }) => {
+  const getDifficultyColor = (difficulty: string): string => {
+    switch (difficulty) {
+      case "easy":
+        return "#34eb52";
+      case "medium":
+        return "#eb7734";
+      case "hard":
+        return "#eb3434";
+      default:
+        return "#000000";
+    }
+  };
+
   return (
     <Wrapper>
       <p className="number">
-        Question: {questionNumber} / {totalQuestions}
+        Question: {questionNumber}/{totalQuestions}
       </p>
-      <sup>{category}</sup>
+      <CategoryTag>{category}</CategoryTag>
       <p dangerouslySetInnerHTML={{ __html: question }} />
-      <div className="answers-container">
-        <div className="row">
-          {answers
-            .filter((answer, index) => index < 2)
-            .map((answer, index) => {
-              return (
-                <ButtonWrapper
-                  key={index}
-                  correct={userAnswer?.correctAnswer === answer}
-                  userClicked={userAnswer?.answer === answer}
-                >
-                  <button
-                    disabled={userAnswer ? true : false}
-                    value={answer}
-                    onClick={callback}
-                  >
-                    <span dangerouslySetInnerHTML={{ __html: answer }} />
-                  </button>
-                </ButtonWrapper>
-              );
-            })}
-        </div>
-        <div className="row">
-          {answers
-            .filter((answer, index) => index > 1)
-            .map((answer, index) => {
-              return (
-                <ButtonWrapper
-                  key={index}
-                  correct={userAnswer?.correctAnswer === answer}
-                  userClicked={userAnswer?.answer === answer}
-                >
-                  <button
-                    disabled={userAnswer ? true : false}
-                    value={answer}
-                    onClick={callback}
-                  >
-                    <span dangerouslySetInnerHTML={{ __html: answer }} />
-                  </button>
-                </ButtonWrapper>
-              );
-            })}
-        </div>
-        <sub style={{ marginTop: "8px" }}>
-          Difficulty: {difficulty.toUpperCase()}
-        </sub>
-      </div>
+      <BtnContainer>
+        {answers.map((answer, index) => {
+          return (
+            <ButtonWrapper
+              key={index}
+              correct={userAnswer?.correctAnswer === answer}
+              userClicked={userAnswer?.answer === answer}
+            >
+              <button
+                disabled={userAnswer ? true : false}
+                value={answer}
+                onClick={callback}
+              >
+                <span dangerouslySetInnerHTML={{ __html: answer }} />
+              </button>
+            </ButtonWrapper>
+          );
+        })}
+      </BtnContainer>
+      <DifficultyTag
+        style={{
+          color: getDifficultyColor(difficulty),
+          border: `1px solid ${getDifficultyColor(difficulty)}`,
+        }}
+      >
+        {difficulty.toUpperCase()}
+      </DifficultyTag>
     </Wrapper>
   );
 };
