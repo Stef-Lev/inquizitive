@@ -5,7 +5,7 @@ import Slider from "@material-ui/core/Slider";
 
 type QNumControlProps = {
   amount: number;
-  onChange: any;
+  onChange: (newValue: number) => void;
 };
 
 const StyledLabel = styled(InputLabel)`
@@ -51,20 +51,6 @@ const marks = [
     label: "30",
   },
 ];
-
-const styles = {
-  labelRoot: {
-    fontSize: "22px",
-    color: "#003249",
-    fontFamily: "'Roboto', sans-serif",
-    "&$focused": {
-      color: "yellow",
-    },
-  },
-  sliderRoot: {
-    color: "#003249",
-  },
-};
 
 const QNumControl = (props: QNumControlProps): JSX.Element => {
   const { onChange } = props;

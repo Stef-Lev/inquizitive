@@ -84,7 +84,7 @@ const App: React.FC = () => {
     setLoading(false);
   };
 
-  const checkAnswer = (e: any) => {
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>): void => {
     if (!gameOver) {
       const answer = e.currentTarget.value;
       const correct = questions[number].correct_answer === answer;
