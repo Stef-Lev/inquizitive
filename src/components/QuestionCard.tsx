@@ -82,6 +82,11 @@ const DifficultyTag = styled.p`
   margin-top: 16px;
 `;
 
+const QuestionText = styled.p`
+  margin-bottom: 20px;
+  font-weight: lighter;
+`;
+
 const QuestionCard: React.FC<QuestionCardProps> = ({
   question,
   category,
@@ -111,7 +116,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
         Question: {questionNumber}/{totalQuestions}
       </p>
       <CategoryTag>{category}</CategoryTag>
-      <p dangerouslySetInnerHTML={{ __html: question }} />
+      <QuestionText dangerouslySetInnerHTML={{ __html: question }} />
       <BtnContainer>
         {answers.map((answer, index) => {
           return (
