@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/the-quizard/static/css/main.2ae47eeb.chunk.css",
+    "main.js": "/the-quizard/static/js/main.005e4ed9.chunk.js",
+    "main.js.map": "/the-quizard/static/js/main.005e4ed9.chunk.js.map",
+    "runtime-main.js": "/the-quizard/static/js/runtime-main.234e890a.js",
+    "runtime-main.js.map": "/the-quizard/static/js/runtime-main.234e890a.js.map",
+    "static/css/2.373bc5f8.chunk.css": "/the-quizard/static/css/2.373bc5f8.chunk.css",
+    "static/js/2.da157fbb.chunk.js": "/the-quizard/static/js/2.da157fbb.chunk.js",
+    "static/js/2.da157fbb.chunk.js.map": "/the-quizard/static/js/2.da157fbb.chunk.js.map",
+    "index.html": "/the-quizard/index.html",
+    "static/css/2.373bc5f8.chunk.css.map": "/the-quizard/static/css/2.373bc5f8.chunk.css.map",
+    "static/css/main.2ae47eeb.chunk.css.map": "/the-quizard/static/css/main.2ae47eeb.chunk.css.map",
+    "static/js/2.da157fbb.chunk.js.LICENSE.txt": "/the-quizard/static/js/2.da157fbb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.234e890a.js",
+    "static/css/2.373bc5f8.chunk.css",
+    "static/js/2.da157fbb.chunk.js",
+    "static/css/main.2ae47eeb.chunk.css",
+    "static/js/main.005e4ed9.chunk.js"
+  ]
+}
