@@ -8,6 +8,7 @@ import { GlobalStyle, Wrapper } from "./App.styles";
 import SpinLoader from "./components/SpinLoader";
 import DifficultyControl from "./components/DifficultyControl";
 import QNumControl from "./components/QNumControl";
+import ReplayBtn from "./components/ReplayBtn";
 
 export type AnswerObject = {
   question: string;
@@ -190,6 +191,7 @@ const App: React.FC = () => {
             />
           </CalculatingContainer>
         )}
+        <ReplayBtn onClick={resetQuiz} />
       </Wrapper>
     </>
   );
