@@ -26,15 +26,15 @@ const Button = styled.div`
       background-color: #ff795e;
       color: #fff;
     }
-`;
+`
 
 function ReplayBtn(props: ReplayBtnProps): JSX.Element {
   const { onClick } = props;
   return (
     <Button onClick={onClick}>
       <ReplayIcon/>
-    </Button>
-  );
+    </Button>)
 }
 
 export default ReplayBtn;
+
