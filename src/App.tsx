@@ -8,6 +8,7 @@ import { GlobalStyle, Wrapper } from "./App.styles";
 import SpinLoader from "./components/SpinLoader";
 import DifficultyControl from "./components/DifficultyControl";
 import QNumControl from "./components/QNumControl";
+import ReplayBtn from "./components/ReplayBtn";
 
 export type AnswerObject = {
   question: string;
@@ -20,7 +21,7 @@ const ControlsContainer = styled.div`
   display: flex;
   background-color: white;
   border-radius: 8px;
-  padding: 16px;
+  padding: 32px;
   flex-direction: column;
   justify-content: space-between;
   gap: 40px;
@@ -190,7 +191,9 @@ const App: React.FC = () => {
             />
           </CalculatingContainer>
         )}
+        <ReplayBtn onClick={resetQuiz} />
       </Wrapper>
+      
     </>
   );
 };

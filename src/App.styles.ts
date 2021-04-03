@@ -9,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
         background: linear-gradient(0deg, rgba(71,135,164,1) 0%, rgba(0,96,140,1) 50%, rgba(15,61,82,1) 100%);
         margin: 0;
         padding: 0 20px;
-        justify-content: center;
     }
     * {
         box-sizing: border-box;
