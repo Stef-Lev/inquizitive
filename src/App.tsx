@@ -121,6 +121,7 @@ const App: React.FC = () => {
 
   const resetQuiz = () => {
     setScore(0);
+    setQuestionsAmount(5);
     setGameOver(true);
     setGameComplete(false);
   };
@@ -193,7 +194,6 @@ const App: React.FC = () => {
         )}
         <ReplayBtn onClick={resetQuiz} />
       </Wrapper>
-      
     </>
   );
 };
