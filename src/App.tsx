@@ -122,6 +122,7 @@ const App: React.FC = () => {
   const resetQuiz = () => {
     setScore(0);
     setQuestionsAmount(5);
+    setDifficulty("easy");
     setGameOver(true);
     setGameComplete(false);
   };
